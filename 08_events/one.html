@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+<body style="background-color: rgb(75, 66, 66); color: rgb(82, 197, 246);">
+    <h2>Amazing Image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+
+
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+
+            <!-- Approach-1 -> but we will not prefer it -->
+            <!-- <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('owl')" ></li> -->
+
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+
+            <li><a style="color: rgb(12, 131, 236);" href="https://google.com" id="google">Google
+            </a></li>
+        </ul>
+   </div>
+</body>
+ <script>
+    //approach-2 -> gives us less features
+    // document.getElementById('owl').onclick = function (){
+    // alert("owl clicked");
+    // }
+
+    //Approach-3 -> but event listeners gives us propagation
+    //event listener bht saare events ko listen kar sakta hai like keyboard k events , mouse k events , drag and drop
+
+    //there is a third parameter also (bydefault -> false) (kabhi kabhi kuch applications essi di jaati hai jo bina true ya false diye complete hi nhi hoti hai )
+//     document.getElementById('owl').addEventListener('click' , function(){
+//    alert("owl clicked again");
+//     })
+
+
+//Approach-4 -> attachEvent()
+//Approach-5 -> jQuery -> on (on event listener)
+
+//event object -> e
+// document.getElementById('owl').addEventListener('click' , function(e){
+//       console.log(e); //we get a list of browser events
+//     },false)
+
+    //type , timestamp, defaultPrevented -> kisi bhi tag ka jo default behaviour hai voh hum rok sakte hai , target , toElement , srcElement , currentTarget , clientX , clientY , screenX , screenY , altKey , ctrlKey , shiftKey , keyCode
+
+     
+    //event propagation has two context -> 1.event bubbling 2.event Capturing
+    //false is event bubbling 
+
+    // document.getElementById('images').addEventListener('click' , function(e){
+    //   console.log("images is clicked"); //we get a list of browser events
+    // },false)
+
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log("owl is clicked"); //we get a list of browser events
+    // },false)
+    //Bubbling (event propogation) -> niche se upar (first li then ul then images)
+    //so first owl is clicked is printed then images is clicked
+
+    //**************gives same result
+    // document.getElementById('images').addEventListener('click' , function(e){
+    //   console.log("images is clicked"); //we get a list of browser events
+    // },false)
+
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log("owl is clicked"); //we get a list of browser events
+    // },false)
+
+  
+    //2-> event capturing -> top to bottom
+    // document.getElementById('images').addEventListener('click' , function(e){
+    //   console.log("images is clicked"); //we get a list of browser events
+    // },true)
+
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log("owl is clicked"); //we get a list of browser events
+    // },true)
+    //first images is clicked then owl is clicked
+
+
+    //we can also stop propogation -> print only owl is clicked on cliking owl
+    //niche se upar -> niche vala print but upar vala not
+    // document.getElementById('images').addEventListener('click' , function(e){
+    //   console.log("images is clicked"); //we get a list of browser events
+    // },false)
+
+    // document.getElementById('owl').addEventListener('click' , function(e){
+    //     console.log("owl is clicked"); //we get a list of browser events
+    //     e.stopPropagation();
+    // },false)
+
+
+    //(to prevent google.com) e basically means capture our event
+    // document.getElementById('google').addEventListener('click' , function(e){
+    //    e.preventDefault();
+    // },false)
+
+    
+    //***************************Exercise
+    //we are cilcking on image and the image gets lost
+
+    //e.target -> gives ki kis target se event occur ho raha hai 
+    //e.target.parentNode -> li hi aajayega (because we want to delete whole li not only the image)
+    // document.querySelector('#images').addEventListener('click' , function(e){
+    //     console.log(e.target.parentNode);
+    //     let removeit = e.target.parentNode;
+    //     //Approach-1
+    //    // removeit.remove();
+
+    //    //Approach-2
+    //    removeit.parentNode.removeChild(removeit);
+    // })
+
+
+
+    //there is a mistake here if we click on the li then its parent is ul then all images get deleted  -> we identify this mistake by tagName 
+    document.querySelector('#images').addEventListener('click' , function(e){
+
+        console.log(e.target.tagName); //LI or IMG
+
+        if(e.target.tagName === 'IMG'){
+        let removeit = e.target.parentNode;
+       removeit.remove();
+        }
+
+    })
+
+ </script>
+</html>

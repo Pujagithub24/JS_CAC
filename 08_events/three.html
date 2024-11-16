@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur JS</h1>
+    <button id = "start">Start</button>
+    <button id = "stop">Stop</button>
+</body>
+<script>
+    //we have our handler and timeout  -> in setInterval pooja and date is printed everytime after 2 seconds
+    //setInterval(function(){} , 2000)
+//    setInterval(function(){
+//     console.log("pooja" , Date.now());
+//    } ,2000)
+
+
+//Approach-2 by passing reference
+// const printme = function(){
+//     console.log("pooja" , Date.now());
+//    } 
+//    setInterval(printme , 2000);
+
+//we can also pass third parameter to it 
+// const printme = function(str){
+//     console.log(str , Date.now());
+//    } 
+//    setInterval(printme , 2000 ,"hi");
+
+
+//to clear the setInterval we use clearInterval
+// const printme = function(str){
+//     console.log(str , Date.now());
+//    } 
+//   const IntervalID =  setInterval(printme , 2000 ,"hi");
+
+//     clearInterval(IntervalID);
+    //nothing is printed now 
+
+
+//if we want to start and stop only when button is clicked
+
+//T-1
+// document.querySelector('#start').addEventListener('click' , function(){
+//     const printme = function(){
+//     console.log("pooja" , Date.now());
+//    }
+
+//    const IntervalID =  setInterval(printme , 2000);
+//    document.querySelector('#stop').addEventListener('click' , function(){
+//         clearInterval(IntervalID);
+//         console.log("STOPPED");
+//    });
+
+// });
+
+//T-2
+const printme = function(){
+    console.log("pooja" , Date.now());
+   }
+document.querySelector('#start').addEventListener('click' , function(){
+
+   const IntervalID =  setInterval(printme , 2000);
+   console.log("START");
+   
+   document.querySelector('#stop').addEventListener('click' , function(){
+        clearInterval(IntervalID);
+        console.log("STOPPED");
+   });
+
+});
+
+</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card {
+            /* Add shadows to create the "card" effect */
+            width: 500px;
+            height: 600px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+          }
+        .container {
+            padding: 2px 16px;
+          }
+          </style>
+</head>
+<body>
+    <div class="card">
+        <img src="img_avatar.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4>John Doe</h4>
+          <p>Architect & Engineer</p>
+        </div>
+      </div>
+</body>
+<script>
+
+const requestUrl = 'https://api.github.com/users/pujagithub24';
+const xhr = new XMLHttpRequest();
+xhr.open('GET' , requestUrl);
+
+xhr.onreadystatechange = function (){
+       if(xhr.readyState === 4){
+
+            const data = JSON.parse(this.responseText);
+
+            document.querySelector(".card img").setAttribute("src" , `${data.avatar_url}`);
+            document.querySelector("h4").innerHTML = `${data.name} , Followers : ${data.followers}`;
+            document.querySelector("h4").style.fontWeight = `bold`;
+            document.querySelector("p").innerHTML = `${data.bio}  ${data.blog}`
+       }
+    }
+    xhr.send();
+
+
+
+//     API requests and the V8 engine are two separate concepts, but they are both relevant to web development, particularly when working with JavaScript.
+
+// API Requests:
+// An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate and interact with each other. In the context of web development, APIs are commonly used to request and exchange data between a client (usually a web browser or a mobile app) and a server.
+
+// API requests are a way for the client to request specific data or perform certain actions from the server. This is typically done using HTTP methods like GET, POST, PUT, DELETE, etc. The client sends a request to the server, and the server responds with the requested data or performs the requested action.
+
+// For example, in JavaScript, you can make API requests using various methods, such as the fetch() function or libraries like Axios or jQuery. Here's a simple example using fetch():
+
+// javascript
+// Copy code
+// fetch('https://api.example.com/data')
+//   .then(response => response.json())
+//   .then(data => {
+//     // Process the data received from the API
+//     console.log(data);
+//   })
+//   .catch(error => {
+//     console.error('Error fetching data:', error);
+//   });
+// V8 Engine:
+// The V8 engine is an open-source JavaScript engine developed by Google. It is at the core of many modern web browsers, including Google Chrome and Chromium-based browsers, as well as Node.js. The primary purpose of the V8 engine is to execute JavaScript code in these environments.
+
+// The V8 engine is responsible for translating JavaScript code into machine code that the computer's processor can execute. It uses Just-In-Time (JIT) compilation to optimize the performance of JavaScript execution.
+
+// Because of its efficiency and speed, the V8 engine significantly improves the performance of JavaScript applications and allows developers to build complex and high-performance web applications.
+
+// In summary, API requests and the V8 engine are both essential components of modern web development. API requests enable communication and data exchange between clients and servers, while the V8 engine optimizes the execution of JavaScript code, making it possible to build fast and efficient web applications.
+
+
+</script>
+</html>

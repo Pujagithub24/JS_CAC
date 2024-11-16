@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai aur Code</title>
+</head>
+<body style="background-color: black; color: white;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+
+//good for small scale -> if we have 500 li and we add 501th li by this method then it has to traverse
+//the whole tree for each value of upcoming additional list
+//     function addlanguage(langName){
+//     const li = document.createElement('li');
+//     li.innerHTML = `${langName}`;
+//     document.querySelector('.language').appendChild(li);
+//     }
+//    addlanguage("python");
+//    addlanguage("CPP");
+//    addlanguage("typescript");
+
+
+  //for large scale method we use more optimise approach -> yaha humne sidha text node create kara hai 
+    function OptiLanguage(langName){
+    const li = document.createElement('li');
+    const addtext = document.createTextNode(langName);
+    li.append(addtext);
+    document.querySelector('.language').appendChild(li);
+    }
+   OptiLanguage("python");
+   OptiLanguage("CPP");
+   OptiLanguage("typescript");
+
+
+   //Edit values
+   const secondlang = document.querySelector("li:nth-child(2)")
+  //T-1->  secondlang.innerHTML = "mojo";
+
+  //T-2-> 
+  const newli = document.createElement('li');
+  newli.textContent = "mojo";
+  secondlang.replaceWith(newli);
+
+  //T-3 by outer HTML
+  const firstlang = document.querySelector("li:first-child");
+  firstlang.outerHTML = '<li>Typescript</li>';
+
+
+  //remove
+  const lastLang = document.querySelector('li:last-child');
+  lastLang.remove();
+  
+</script>
+</html>

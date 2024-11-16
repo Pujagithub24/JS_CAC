@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Chai aur Code</h1>
+    <button id = "stop">Stop</button>
+</body>
+<script>
+    // setTimeout(funtion(){} ,2000);
+    //2 sec ka time do uske baad jo bologe voh mai execute kar dunga lekin ek baar hi -> pooja in this case
+    // setTimeout(function(){
+    //     console.log("pooja");
+    // },2000)
+
+
+    //T-2 -> we can also give reference of it
+    // const printpooja = function(){
+    //     console.log("pooja");
+    // }
+    // setTimeout( printpooja ,2000);
+
+
+    //if we want to change the heading to best js series after two second
+    const changeheading = function(){
+       document.querySelector('h1').innerHTML = "best js series";
+   }
+//     setTimeout(changeheading , 2000);
+
+
+//*************TO stop this setTimeout**********
+//we use clearTimeout
+// const changeme = setTimeout(changeheading , 2000);
+// clearTimeout(changeme); //now heading is not changed
+
+//if we not want to change the heading only when stop button is clicked
+const changeme = setTimeout(changeheading , 2000);
+
+document.querySelector('#stop').addEventListener('click',function(){
+    clearTimeout(changeme); 
+    console.log("STOPPED");
+})
+
+</script>
+</html>

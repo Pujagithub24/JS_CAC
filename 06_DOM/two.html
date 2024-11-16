@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | Chai Aur Code</title>
+</head>
+<body style="background-color: black; color: white;">
+    <div class="parent">
+        <!-- hello guys -->
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thursday</div>
+    </div>
+</body>
+<script>
+   const val =  document.querySelector('.parent');
+  // console.log(val);
+  // console.log(val.children);  //we get an HTML collection of size 4 in console
+   //console.log(val.children[1]);  // <div class="day">Tuesday</div>
+ //console.log(val.children[1].innerHTML);  //Tuesday
+
+ //HTML collection , we cannot use forEach loop here we have to convert it to array
+ //or we can directly use for loop here
+
+//  for (let index = 0; index < val.children.length; index++) {
+//     console.log(val.children[index].innerHTML);
+//  }
+
+//  Monday
+//Tuesday
+// Wednesday
+//Thursday
+
+// val.children[1].style.color = "pink";
+// console.log(val.firstElementChild);  //  <div class="day">Monday</div>
+// console.log(val.lastElementChild);    //<div class="day">Thursday</div>
+
+const dayone = document.querySelector('.day');
+// console.log(dayone);  //  <div class="day">Monday</div>
+
+// console.log(dayone.parentElement); //we get our parent
+// console.log(dayone.nextElementSibling);  //  <div class="day">Tuesday</div>
+
+console.log(val.childNodes); //we get a nodelist of length 9 (enter->text , textnode->div.day)
+//we get a nodelist of 11 if we add a comment also -> 1 for comment and 1 for enter
+
+
+
+//A nodelist is a collection of document nodes which includes text nodes , attribute nodes 
+//and element nodes. A line break is also counted in nodelist , all the lines breaks are counted
+// and they are represented as textNode in nodelist.
+
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+    class React{
+
+        constructor(){
+            this.library = "React";
+            this.server = "http://localhost:3000";
+            
+            //requirement
+             document.querySelector('button').addEventListener('click',this.handleClicked.bind(this));
+             //here if we write this.handleClicked.bind(this) -> handleCLicked jo kaam kar raha tha uska reference toh chala gaya lekin bind likhne se upar vale jo this the variables , functions the voh bhi attach ho gaye
+        }
+
+        handleClicked(){
+            console.log("Button Clicked"); 
+            console.log(this);  //<button>Button Clicked</button>
+            console.log(this.server); //undefined
+        }
+
+    }
+
+    const app = new React();
+
+//after writing .bind(this)
+// Button Clicked
+// bind_08.html:63 React {library: 'React', server: 'http://localhost:3000'} -> console.log(this)
+// bind_08.html:64 http://localhost:3000  -> (console.log(this.server);)
+
+
+</script>
+</html>
